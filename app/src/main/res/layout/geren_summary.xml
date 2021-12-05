@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark"
+    tools:context="com.example.diary.geren.GerenSumActivity">
+
+    <TextView
+        android:id="@+id/reviewTitle"
+        android:layout_width="357dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:textColor="#FFFFFF"
+        android:textSize="70sp"
+        app:layout_constraintBottom_toTopOf="@+id/cat5"
+        app:layout_constraintEnd_toEndOf="@+id/cat5"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/cat5"
+        android:layout_width="157dp"
+        android:layout_height="147dp"
+        android:layout_marginBottom="373dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:src="@drawable/cat5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/reviewTitle"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toStartOf="@+id/reviewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/reviewTitle" />
+
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="408dp"
+        android:layout_height="209dp"
+        android:gravity="center"
+        android:layout_marginBottom="100dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/advice"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <RadioButton
+        android:id="@+id/advice"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="248dp"
+        android:layout_marginEnd="64dp"
+        android:layout_weight="1"
+        android:background="@drawable/yuanjuxing"
+        android:button="@null"
+        android:gravity="center"
+        android:text="想听听我的建议吗"
+        android:textColor="#018AB8"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cat5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

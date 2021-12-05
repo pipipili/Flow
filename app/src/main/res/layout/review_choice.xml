@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBEDED">
+
+    <RadioButton
+        android:id="@+id/cat"
+        android:layout_width="244dp"
+        android:layout_height="290dp"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="100dp"
+        android:layout_weight="1"
+        android:background="@drawable/cat"
+        android:button="@null"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintBottom_toTopOf="@+id/reviewTitle"
+        app:layout_constraintEnd_toStartOf="@+id/xinfeng"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/xinfeng"
+        android:layout_width="143dp"
+        android:layout_height="105dp"
+        android:layout_weight="1"
+        android:background="@drawable/xinfeng"
+        android:button="@null"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+    <ImageView
+        android:id="@+id/flower"
+        android:layout_width="168dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="350dp"
+        android:layout_marginTop="1200dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/flower"
+        android:button="@null"
+        app:layout_constraintBottom_toTopOf="@+id/xinfeng"
+        app:layout_constraintEnd_toStartOf="@+id/cat"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/random"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="650dp"
+        android:layout_marginTop="1250dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        android:text="帮我随机抽出一篇"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/xinfeng"
+        app:layout_constraintEnd_toStartOf="@+id/cat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/appoint"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="650dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        android:text="我自己来选"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@+id/xinfeng"
+        app:layout_constraintEnd_toStartOf="@+id/cat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,194 @@
+package com.example.diary.bin;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+//import com.aliasi.util.Files;
+//import com.aliasi.classify.Classification;
+//import com.aliasi.classify.Classified;
+//import com.aliasi.classify.DynamicLMClassifier;
+//import com.aliasi.lm.NGramProcessLM;
+
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.diary.tools.MyDatabaseHelper;
+
+import com.example.diary.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+
+public class BinActivity1 extends AppCompatActivity {
+
+    private String TAG = "BinActivity1";
+    private MyDatabaseHelper dbHelper;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.bin);
+
+        //获取到intent传过来的数据
+        Intent intent = getIntent();
+        boolean isNew = intent.getBooleanExtra("isNew",false);
+
+        //获取sqlite实例
+        dbHelper = new MyDatabaseHelper(this, "Q.db", null, 2);
+
+        //根据isNew的值来判断是否为新建日记
+        if (isNew){
+            Log.d(TAG, "isNew is true");
+
+            //获取当前的日期和星期几
+            Calendar calendar = Calendar.getInstance(); // get current instance of the calendar
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            int week = calendar.get(Calendar.DAY_OF_WEEK);
+            //System.out.println(formatter.format(calendar.getTime()) + "-" + getWeek(week));
+
+
+            //新建日记的日期为当前日期
+            TextView textView_time = findViewById(R.id.time);
+            textView_time.setText(formatter.format(calendar.getTime()) + " " + getWeek(week));
+
+        }else {
+            Log.d(TAG, "isNew is false");
+
+            Integer diaryId = intent.getIntExtra("diaryId",0);
+            Log.d(TAG, "diaryId is " + diaryId);
+            //根据diaryId显示日记内容
+            //编辑日记的日期为创建时候的日期
+            EditText editText_title = findViewById(R.id.title_b);
+            TextView textView_time = findViewById(R.id.time_b);
+            EditText editText_content = findViewById(R.id.content_b);
+
+            //此处根据diaryId从数据库中取出日记内容
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor=db.rawQuery("select * from Bins where diaryId = ?",new String[]{diaryId.toString()});
+            if(cursor.moveToFirst())//Move the cursor to the first row. This method will return false if the cursor is empty.
+            {
+                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String content = cursor.getString(cursor.getColumnIndex("content"));
+                String showTime = cursor.getString(cursor.getColumnIndex("showTime"));
+
+                //设置显示
+                editText_title.setText(title);
+                editText_title.setSelection(title.length());
+                textView_time.setText(showTime);
+                editText_content.setText(content);
+                editText_content.setSelection(content.length());  //设置光标显示在内容的最后（待实现）
+            }
+
+        }
+
+    }
+
+
+    //注意活动的生命周期问题，在write这个活动没有销毁前，上一个main活动已经开始创建
+    //所以退出存数据的时候不能在destroy的时候存，这样的话上一个main活动加载不到新存的数据
+    //应该在pause的时候存
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //获取到intent传过来的数据
+        Intent intent = getIntent();
+        boolean isNew = intent.getBooleanExtra("isNew",false);
+
+
+        //获取到当前内容
+        EditText editText_title = findViewById(R.id.title_b);
+        TextView textView_time = findViewById(R.id.time_b);
+        EditText editText_content = findViewById(R.id.content_b);
+
+        String title = editText_title.getText().toString();
+        String time = textView_time.getText().toString();
+        String content = editText_content.getText().toString();
+
+        //获取文本NLP结果
+        //最终被存入数据库的数据
+
+        SharedPreferences pref = getSharedPreferences("author",MODE_PRIVATE);
+        String author = pref.getString("name","佚名");
+
+        //退出当前活动的时候保存内容
+        if (isNew){
+            //如果是新日记则在数据库新建记录
+            Log.d(TAG, "onDestroy: save");
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            // 开始组装数据
+            values.put("title", title);
+            values.put("content", content);
+            values.put("author", author);
+            values.put("showTime", time);
+
+
+            db.insert("Bins", null, values); // 插入第一条数据
+
+            //在这个活动没有完全退出前，上一个活动已经开始执行，导致initDiarys里面数据不刷新
+            Log.d(TAG, "onStop: have saved");
+
+        }else {
+            Log.d(TAG, "onDestroy: update");
+            //不是新日记则根据diaryId更新数据库里的记录（待实现）
+            Integer diaryId = intent.getIntExtra("diaryId",0);;
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("title", title);
+            values.put("content", content);
+            values.put("author", author);
+            db.update("Bins", values, "diaryId = ?", new String[] { diaryId.toString() });
+
+        }
+
+
+    }
+
+    //如果title和content有一个为空则不进行更新和保存，返回的时候弹出确认框让用户确认
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        EditText editText_title = findViewById(R.id.title_b);
+        EditText editText_content = findViewById(R.id.content_b);
+        String title = editText_title.getText().toString();
+        String content = editText_content.getText().toString();
+
+        if (keyCode==KeyEvent.KEYCODE_BACK && (title.equals("") || content.equals(""))){
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle("提示：");
+            builder.setMessage("您的日记还没写完呢？");
+
+            //设置确定按钮
+            builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            //设置取消按钮
+            builder.setPositiveButton("取消",null);
+            //显示提示框
+            builder.show();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    //匹配周几
+    public static String getWeek(int week) {
+        //制作表：
+        String[] arr = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+        return arr[week - 1];
+    }
+
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.diary.write.WriteActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="请输入您的日记标题"
+        android:maxLines="1"
+        android:textColor="#AFAFAF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:gravity="right"
+        android:text="显示当前日期"
+        android:textColor="#939393"
+        android:textSize="16sp" />
+
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="start"
+        android:background="@null"
+        android:hint="请输入您的日记内容"
+        android:textColor="#AFAFAF"
+        android:textSize="18sp" />
+
+<!--    <Button-->
+<!--        android:id="@+id/button_addImg"-->
+<!--        android:layout_width="51dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:background="@mipmap/icon_addpic" />-->
+
+
+</LinearLayout>

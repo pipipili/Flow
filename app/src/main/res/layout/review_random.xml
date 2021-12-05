@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/cat2"
+        android:layout_width="104dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="76dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:src="@drawable/cat2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ms"
+        android:layout_width="183dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="85dp"
+        android:layout_weight="1"
+        android:background="@drawable/ms"
+        android:button="@null"
+        app:layout_constraintBottom_toTopOf="@+id/goback"
+        app:layout_constraintEnd_toEndOf="@+id/goback"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/zhuazi"
+        android:layout_width="85dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="264dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/zhuazi"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/juxing1"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="155dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="525dp"
+        android:text="我想回到那一天"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/zhuazi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cat2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/juxing1"
+        android:layout_width="332dp"
+        android:layout_height="430dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="166dp"
+        android:layout_weight="1"
+        android:background="@drawable/juxing1"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cat2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/randomDiary"
+        android:layout_width="0dp"
+        android:layout_height="266dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="64dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_weight="1"
+        android:background="@drawable/juxing1"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/juxing1"
+        app:layout_constraintEnd_toEndOf="@+id/goback"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/juxing1" />
+
+    <ImageView
+        android:id="@+id/cat3"
+        android:layout_width="70dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="190dp"
+        android:layout_marginBottom="268dp"
+        android:layout_weight="1"
+        android:background="@drawable/cat3"
+        android:button="@null"
+        app:layout_constraintBottom_toTopOf="@+id/zhuazi"
+        app:layout_constraintEnd_toStartOf="@+id/goback"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioButton
+        android:id="@+id/goback"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="350dp"
+        android:layout_weight="1"
+        android:background="@drawable/cuo"
+        android:button="@null"
+        app:layout_constraintBottom_toTopOf="@+id/zhuazi"
+        app:layout_constraintEnd_toEndOf="@+id/juxing1"
+        app:layout_constraintTop_toBottomOf="@+id/ms" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

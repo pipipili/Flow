@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.example.diary"
+        minSdkVersion 24
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation files('libs\\xml-apis-2.9.1.jar')
+    implementation 'com.google.android.material:material:1.1.0'
+    dependencies {
+        implementation fileTree(dir: "libs", include: ["*.jar"])
+        implementation 'androidx.appcompat:appcompat:1.2.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.0.3'
+        implementation 'com.balysv:material-ripple:1.0.2'
+        implementation 'com.google.android.material:material:1.0.0'
+        implementation 'com.melnykov:floatingactionbutton:1.3.0'
+        implementation files('libs\\lingpipe-4.1.2.jar')
+        implementation files('libs\\lingpipe-demos.jar')
+        implementation files('libs\\commons-fileupload-1.2.1.jar')
+        implementation files('libs\\commons-io-1.4.jar')
+        implementation files('libs\\lingmed-1.3.jar')
+        implementation files('libs\\lucene-core-3.0.1.jar')
+        implementation files('libs\\luke-0.9.9.jar')
+        implementation files('libs\\nekohtml-1.9.14.jar')
+        implementation files('libs\\servlet-api-6.0.26.jar')
+
+
+        implementation files('libs\\zhToksDemo.jar')
+        implementation files('libs\\classifyNews.jar')
+        implementation files('libs\\cluster.jar')
+        implementation files('libs\\crf.jar')
+        implementation files('libs\\db-demo.jar')
+        implementation files('libs\\em.jar')
+        implementation files('libs\\hyphenation.jar')
+        implementation files('libs\\interestingPhrases.jar')
+        implementation files('libs\\languageId.jar')
+        implementation files('libs\\lm-demo.jar')
+        implementation files('libs\\logisticRegression.jar')
+        implementation files('libs\\neDemo.jar')
+        implementation files('libs\\posTags.jar')
+        implementation files('libs\\querySpellCheck.jar')
+        implementation files('libs\\sentence-demo.jar')
+        implementation files('libs\\sentimentDemo.jar')
+        implementation files('libs\\stringCompare.jar')
+        implementation files('libs\\svd.jar')
+        implementation files('libs\\wordSense.jar')
+        implementation files('libs\\junit-4.8.2.jar')
+        provided files('C:/Program Files (x86)/Java/jdk1.7.0_13/jre/lib/rt.jar')
+        compile 'com.master.android:permissionhelper:1.3'
+        testImplementation 'junit:junit:4.12'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    }
+    }
+
